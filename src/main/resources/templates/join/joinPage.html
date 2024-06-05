@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>회원가입</title>
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }    .container {
+                 width: 400px;
+                 margin: 0 auto;
+                 padding: 20px;
+                 background-color: #f0f0f0;
+             }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        button[type="submit"] {
+            padding: 10px 20px;
+            background-color: #4285f4;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .error-message{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <form action="/member/signup" th:object="${member}" method="post">
+        <div class="form-group">
+            <label for="name">이름</label>
+            <input type="text" id="name" th:field="*{name}" name="name" placeholder="이름을 입력하세요" required>
+        </div>
+        <div th:errors="*{name}"  class="error-message">
+            <p>이름 오류 메시지</p>
+        </div>
+        <div class="form-group">
+            <label for="loginId">아이디</label>
+            <input type="text" id="loginId" th:field="*{loginId}" name="loginId" placeholder="아이디를 입력하세요" required>
+        </div>
+        <div th:errors="*{loginId}"  class="error-message">
+            <p>아이디 오류 메시지</p>
+        </div>
+        <div class="form-group">
+            <label for="password">비밀번호</label>
+            <input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요" required>
+        </div>
+        <div th:errors="*{password}"  class="error-message">
+            <p>비밀번호 오류 메시지</p>
+        </div>
+        <div class="form-group">
+            <label for="description">자기 소개</label>
+            <textarea id="description" name="description" th:field="*{description}" placeholder="자기소개를 입력하세요" required></textarea>
+        </div>
+        <button type="submit">가입하기</button>
+
+    </form>
+    <div class="form-group">
+        <button type="button" onclick="location.href='/';">홈으로 돌아가기</button>
+    </div>
+</div>
+</body>
+</html>
